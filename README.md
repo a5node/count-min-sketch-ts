@@ -1,6 +1,5 @@
 # count-min-sketch-ts
 Count-Min-Sketch Data Structure in TS
-Depends on Jest, required Node 18+
 
 The TypeScript implementation of Coromode and Muthukrishnan's [Count-Min sketch](http://en.wikipedia.org/wiki/Count-Min_sketch) data structure for JavaScript.  The count-min sketch is basically a high powered generalization of the bloom filter.  While a bloom filter gives an efficient way to approximate membership of a set, a count-min sketch can give approximate data about the relative frequency of items in the set.
 
@@ -42,10 +41,6 @@ console.log(sketch.query("bar")) //Prints 0
 ## Install
 
     npm install count-min-sketch-ts
-
-## Test (Jest)
-
-    npm test
     
 ## API
 
