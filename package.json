@@ -1,0 +1,28 @@
+{
+  "name": "count-min-sketch-ts",
+  "version": "1.0.0",
+  "description": "Count-Min-Sketch Data Structure in TS",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a5node/count-min-sketch-ts.git"
+  },
+  "keywords": [
+    "count-min-sketch",
+    "typescript"
+  ],
+  "author": "a5node",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.11.9",
+    "k-hash": "~0.0.0",
+    "typescript": "^4.6.4"
+  },
+  "bugs": {
+    "url": "https://github.com/a5node/count-min-sketch-ts/issues"
+  },
+  "homepage": "https://github.com/a5node/count-min-sketch-ts#readme"
+}
