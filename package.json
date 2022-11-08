@@ -1,6 +1,6 @@
 {
   "name": "count-min-sketch-ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Count-Min-Sketch Data Structure in TS",
   "main": "build/index.js",
   "scripts": {
