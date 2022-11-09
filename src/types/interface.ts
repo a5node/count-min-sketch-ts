@@ -1,9 +1,10 @@
-export type TableBins = number[] | Uint32Array;
+export type Scratch = number[] | Uint32Array;
 export type Key = number | object | string | bigint;
 export type HashInt = (int: number) => number;
 export type HashFunction = (str: string) => number;
-export type KHash = (key: Key, bins: TableBins) => TableBins;
-export type Hash32 = (key: string, seed: number) => number;
+export type WrapperHashFunc = (key: Key, bins: Scratch) => Scratch;
+export type HashKeyString = (key: string, idx: number) => number;
+export type HashKeyNumber = (key: number, idx: number) => number;
 
 /** Create `count min sketch`
  * @param algrithmWidth - The width of a algorithms
@@ -14,7 +15,7 @@ export type Hash32 = (key: string, seed: number) => number;
 export type CreateCountMinSketch = (
   algrithmWidth: number,
   numberOfHashFunctions: number,
-  hashFunc: KHash,
+  hashFunc: HashFunction[],
 ) => ICountMinSketch;
 /** Create default `count min sketch`
  * @returns `CountMinSketch`

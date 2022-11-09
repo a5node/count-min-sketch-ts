@@ -1,4 +1,4 @@
-import { Hash32 } from '../types';
+import { HashKeyString } from '../types';
 /**
  * JS Implementation of MurmurHash2
  *
@@ -8,12 +8,12 @@ import { Hash32 } from '../types';
  * @see http://sites.google.com/site/murmurhash/
  *
  * @param {string} str ASCII only
- * @param {number} seed Positive integer only
+ * @param {number} idx Positive integer only
  * @return {number} 32-bit positive integer hash
  */
-export const hash2_32: Hash32 = (str: string, seed: number): number => {
+export const hash2_32: HashKeyString = (str: string, idx: number): number => {
   let l: number = str.length;
-  let h: number = seed ^ l;
+  let h: number = idx ^ l;
   let i = 0;
   let k;
 

@@ -1,4 +1,4 @@
-import { ICountMinSketch, Key, KHash, ToJSON } from '../types';
+import { ICountMinSketch, Key, WrapperHashFunc, ToJSON } from '../types';
 /** TypeScript realization of Count-Min-Sketch data structured, inspired by https://github.com/mikolalysenko/count-min-sketch
  * ```ts
  * class CountMinSketch {
@@ -12,7 +12,7 @@ import { ICountMinSketch, Key, KHash, ToJSON } from '../types';
 export class CountMinSketch implements ICountMinSketch {
   private table: Uint32Array;
   private scratch: Uint32Array;
-  constructor(private width: number, private depth: number, private hashFunc: KHash) {
+  constructor(private width: number, private depth: number, private hashFunc: WrapperHashFunc) {
     this.table = new Uint32Array(width * depth);
     this.scratch = new Uint32Array(depth);
   }

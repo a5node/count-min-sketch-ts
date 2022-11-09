@@ -1,4 +1,4 @@
-import { Hash32 } from '../types';
+import { HashKeyString } from '../types';
 /**
  * JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)
  *
@@ -8,10 +8,10 @@ import { Hash32 } from '../types';
  * @see http://sites.google.com/site/murmurhash/
  *
  * @param {string} key ASCII only
- * @param {number} seed Positive integer only
+ * @param {number} idx Positive integer only
  * @return {number} 32-bit positive integer hash
  */
-export const hash3_32: Hash32 = (key: string, seed: number): number => {
+export const hash3_32: HashKeyString = (key: string, idx: number): number => {
   const remainder: number = key.length & 3; // key.length % 4
   const bytes: number = key.length - remainder;
   const c1 = 0xcc9e2d51;
@@ -19,7 +19,7 @@ export const hash3_32: Hash32 = (key: string, seed: number): number => {
   let k1: number;
   let h1b: number;
   let i = 0;
-  let h1: number = seed;
+  let h1: number = idx;
 
   while (i < bytes) {
     k1 =
