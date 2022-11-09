@@ -1,6 +1,13 @@
 import { ICountMinSketch, Key, KHash, ToJSON } from '../types';
-/**
- * TypeScript realization of Count-Min-Sketch data structured, inspired by https://github.com/mikolalysenko/count-min-sketch
+/** TypeScript realization of Count-Min-Sketch data structured, inspired by https://github.com/mikolalysenko/count-min-sketch
+ * ```ts
+ * class CountMinSketch {
+ * query: (key: Key) => number;
+ * update: (key: Key) => void;
+ * toJSON: () => ToJSON;
+ * fromJSON: (data: string | ToJSON) => this;
+ * }
+ * ```
  */
 export class CountMinSketch implements ICountMinSketch {
   private table: Uint32Array;
