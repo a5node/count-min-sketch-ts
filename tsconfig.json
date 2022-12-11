@@ -1,7 +1,50 @@
 {
     "compilerOptions": {
         "allowJs": true,
-        //"esModuleInterop": true,
-        "outDir": "build"
-    }
+        "outDir": "build",
+        "resolveJsonModule": true,                        /* Enable importing .json files */
+		"preserveConstEnums": true, 
+		"forceConsistentCasingInFileNames": true,
+		"strictBindCallApply": true,                      /* Check that the arguments for `bind`, `call`, and `apply` methods match the original function. */
+		"strictPropertyInitialization": false,            /* Check for class properties that are declared but not set in the constructor. */
+		"exactOptionalPropertyTypes": false,               /* Interpret optional property types as written, rather than adding 'undefined'. */
+		"noFallthroughCasesInSwitch": true,               /* Enable error reporting for fallthrough cases in switch statements. */
+		"noUncheckedIndexedAccess": true,                 /* Include 'undefined' in index signature results */
+		"noImplicitOverride": true,                       /* Ensure overriding members in derived classes are marked with an override modifier. */
+		"noPropertyAccessFromIndexSignature": true,       /* Enforces using indexed accessors for keys declared using an indexed type */
+		"typeRoots": ["./node_module/@types", "./src/types"],
+		"types": ["node", "jest"],                                    
+		"noEmitOnError": true,                            
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"target": "ES6",
+		"skipLibCheck": true ,                       
+		"alwaysStrict":true,
+		"checkJs": true,
+		"sourceMap": true,
+		"strictNullChecks": false,              
+		"strictFunctionTypes": true,           
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"removeComments": true,
+		"allowSyntheticDefaultImports": true,
+		"incremental": true,
+		"allowUnreachableCode": true,
+		"allowUnusedLabels": true,
+		"noImplicitReturns": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true, 
+		"pretty": true,
+		"strict": true,
+		"noImplicitAny": true,
+		"importHelpers": true,
+		"moduleResolution": "node",  
+		"baseUrl": "./",   
+    },
+    "include": ["./src/**/*.ts"],
+	"exclude": ["node_modules", "**/*.spec.ts","**/*.test.ts"],
+	"ts-node": {
+		"files": true
+	 },
+	// "files": ["./src/types/custom.d.ts"],
   }
