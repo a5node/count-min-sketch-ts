@@ -1,19 +1,25 @@
+/* eslint-disable @typescript-eslint/ban-types */
 /**
  * TypeScript realization of Count-Min-Sketch data structured, inspired by https://github.com/mikolalysenko/count-min-sketch
  */
 import * as defaultHash from "k-hash";
+import { wrapperHashFunction } from "./hashes";
 
 "use strict"
 
-function CountMinSketch(width, depth, hashFunc) {
+function CountMinSketch(width, depth, hashFunc: Function) {
   this.width = width
   this.depth = depth
-  this.hashFunc = hashFunc
+  this.hashFunc = hashFunc as Function
   this.table = new Uint32Array(width * depth)
   this.scratch = new Uint32Array(depth)
 }
 
 const proto = CountMinSketch.prototype
+
+proto.hashFunc = function(key, scratch){
+    return this.hashFunc
+}
 
 proto.toJSON = function() {
   return {
@@ -57,7 +63,7 @@ proto.update = function(key) {
   const w = this.width
   const tab = this.table
   let ptr = 0
-  this.hashFunc(key, this.scratch)
+  proto.hashFunc(key, this.scratch)
   for(let i=0; i<d; ++i) {
     tab[ptr + (this.scratch[i] % w)] += 1
     ptr += w
@@ -69,7 +75,7 @@ proto.query = function(key) {
     const w = this.width
     const tab = this.table
     let ptr = w
-  this.hashFunc(key, this.scratch)
+  proto.hashFunc(key, this.scratch)
   let r = tab[this.scratch[0]%w]
   for(let i=1; i<d; ++i) {
     r = Math.min(r, tab[ptr + (this.scratch[i]%w)])
@@ -78,8 +84,8 @@ proto.query = function(key) {
   return r
 }
 
-export function createCountMinSketch(algrithmWidth, numberOfHashFunctions, hashFunc) {
-  hashFunc = hashFunc || defaultHash
+export function createCountMinSketch(algrithmWidth, numberOfHashFunctions, hashFuncs) {
+  const hashFunc: Function = hashFuncs ? wrapperHashFunction[hashFuncs] : defaultHash
   const width = algrithmWidth
   const depth = numberOfHashFunctions
   return new CountMinSketch(width, depth, hashFunc)

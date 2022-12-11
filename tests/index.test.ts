@@ -1,5 +1,5 @@
 import { createCountMin, createCountMinSketch } from '../src/index';
-import {JSHash, SDBMHash, DJBHash, DEKHash, APHash, ELFHash, wrapperHashFunction} from '../src/hashes';
+import {JSHash, SDBMHash, DJBHash, DEKHash, APHash, ELFHash} from '../src/hashes';
 
 describe('testing default implementation', () => {
   test('testing default implementation basic operations', () => {
@@ -49,7 +49,7 @@ describe('testing default implementation', () => {
 describe('testing customisable implementation', () => {
   test('testing customisable implementation basic operations', () => {
 
-    const sketch = createCountMinSketch(10, 6, wrapperHashFunction([APHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash]))
+    const sketch = createCountMinSketch(10, 6, [APHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash])
 
     const obj= {test: "test", key: 123}
   
@@ -70,8 +70,8 @@ describe('testing customisable implementation', () => {
     expect(sketch.query(124)).toBe(1)
     expect(sketch.query(12345)).toBe(1)
 
-    sketch.update("a", 1)
-    sketch.update(12345, 1)
+    sketch.update("a") 
+    sketch.update(12345)
     sketch.update(obj)
 
     expect(sketch.query("a")).toBe(2)
@@ -85,7 +85,7 @@ describe('testing customisable implementation', () => {
 
   test('testing customisable implementation to/from JSON', () => {
 
-    const sketch = createCountMinSketch(10, 7, wrapperHashFunction([ELFHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash]))
+    const sketch = createCountMinSketch(10, 7, [ELFHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash])
   
     const obj= {test: "test", key: 123}
 
@@ -96,7 +96,7 @@ describe('testing customisable implementation', () => {
     sketch.update(obj)
 
     const x = sketch.toJSON()
-    const y = createCountMinSketch(10, 7, wrapperHashFunction([ELFHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash]))
+    const y = createCountMinSketch(10, 7, [ELFHash, JSHash, SDBMHash, DJBHash, DEKHash, APHash])
     y.fromJSON(x)
 
     expect(y.query("a")).toBe(1)

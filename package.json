@@ -31,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/a5node/count-min-sketch-ts/issues"
   },
-  "homepage": "https://github.com/a5node/count-min-sketch-ts#readme"
+  "homepage": "https://github.com/a5node/count-min-sketch-ts#readme",
+  "dependencies": {
+    "@babel/helper-hoist-variables": "^7.18.6"
+  }
 }
